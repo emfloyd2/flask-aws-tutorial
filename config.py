@@ -8,7 +8,7 @@ from base64 import b64decode
 pw_encrypted = "AQICAHjtJ2LwO2/txZD+zYoGbFjgst2ppIoQMVmgkCF0iTNoNQECoe4yuQRk1965HyebnvbVAAAAajBoBgkqhkiG9w0BBwagWzBZAgEAMFQGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMc+ZchgqDOWRXISiBAgEQgCfqmzjnA3MSqx4/cDMzlBx+x6shkXrmWQqOBOITer2RILypJHIpkV0="
 user_encrypted = "AQICAHjtJ2LwO2/txZD+zYoGbFjgst2ppIoQMVmgkCF0iTNoNQFgMnILb/mIi8NPVGOp/rkoAAAAYzBhBgkqhkiG9w0BBwagVDBSAgEAME0GCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMjPPBaPFo+O2ZreKoAgEQgCCyw+rn4ZzJCvBhRG2/24/gXsKwx9OUBl3d72jrhrWZNA=="
 
-client = boto3.client('kms')
+client = boto3.client('kms', region_name='us-east-2')
 
 pw = client.decrypt(CiphertextBlob=b64decode(pw_encrypted))['Plaintext']
 user = client.decrypt(CiphertextBlob=b64decode(user_encrypted))['Plaintext']
